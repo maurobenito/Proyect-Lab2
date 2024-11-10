@@ -1,0 +1,961 @@
+/* Componentes */
+
+/* Botones */
+.btn-primary, .btn-secondary, .btn-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: var(--transition);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+/* Mejoras para botones */
+.btn-primary:hover, .btn-secondary:hover, .btn-danger:hover {
+  filter: brightness(110%);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active, .btn-secondary:active, .btn-danger:active {
+  transform: translateY(0);
+}
+
+/* Formularios */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  transition: all 0.3s ease;
+}
+
+.form-control::placeholder {
+  color: #999;
+}
+
+select.form-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 12 12'%3E%3Cpath d='M6 9L1 4h10L6 9z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 12px;
+  padding-right: 2.5rem;
+}
+
+input[type="file"].form-control {
+  padding: 0.5rem;
+}
+
+.card.login-card,
+.card.register-card,
+.card.card-form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.form-control:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+}
+
+/* Tablas */
+.table-container {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: var(--border-radius);
+}
+
+.table th,
+.table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.table tr:hover {
+  background-color: #f9fafb;
+}
+
+.table td.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.table .btn-secondary {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.table .btn-secondary i {
+  font-size: 1rem;
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+/* Espacio superior para todas las tarjetas excepto login */
+.card:not(.login-card) {
+  margin-top: 2rem;
+}
+
+.card.card-form {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card.card-table {
+  margin-bottom: 2rem;
+}
+
+/* Ajuste específico para el contenedor del dashboard */
+.dashboard-container {
+  margin-top: 0;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+/* Alertas */
+.alert {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+}
+
+.alert-danger {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    position: static;
+    height: auto;
+  }
+}
+
+/* Login styles */
+.login-card {
+  max-width: 400px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.form-actions button,
+.form-actions a {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Input improvements */
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: var(--text-color);
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.user-name {
+  font-weight: 500;
+}
+
+.user-role {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.main-footer {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1.5rem 0;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-brand {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.footer-copyright {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.welcome-banner {
+  padding: 2rem;
+  margin-top: 1rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--border-radius);
+  color: white;
+}
+
+.welcome-banner h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.welcome-banner p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  border-radius: var(--border-radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.user-info-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-info-header i {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.user-name {
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.user-role {
+  color: #4b5563;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+/* Formulario de registro */
+.form-register {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.form-register h1 {
+  margin-bottom: 2rem;
+  color: var(--text-color);
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+.form-register .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-register .form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.form-register .form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-register input[type="file"] {
+  padding: 0.5rem;
+  border: 2px dashed #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.form-register input[type="file"]:hover {
+  border-color: var(--primary-color);
+  background-color: #f3f4f6;
+}
+
+.form-register .button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.form-register .btn {
+  min-width: 120px;
+  justify-content: center;
+}
+
+.alert {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+}
+
+.alert-danger {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* Estilos para el formulario de edición de usuario */
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 2rem;
+  margin: 2rem auto;
+}
+
+.card-title {
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.btn-primary, .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.btn-secondary {
+  background: #f3f4f6;
+  color: var(--text-color);
+  border: 1px solid #ddd;
+}
+
+/* Botón volver */
+.card .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+}
+
+/* Tarjeta para formularios */
+.card-form {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Tarjeta para tablas */
+.card-table {
+  max-width: 1200px;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.logo a:hover {
+  opacity: 0.8;
+}
+
+.logo i {
+  margin-right: 10px;
+}
+
+.success-message {
+  margin: 0;
+  white-space: pre-line;
+  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.user-info-header {
+  display: flex;
+  align-items: center;
+}
+
+.current-photo {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.current-photo img {
+  max-width: 150px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Estilos para la foto de perfil en el sidebar */
+.sidebar .user-info {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.sidebar .user-info img.user-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar .user-info i.fas.fa-user-circle {
+  font-size: 120px;
+  color: #ddd;
+  margin-bottom: 1rem;
+}
+
+/* Estilos para la foto de perfil en el header */
+.user-header .user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+.user-header i.fas.fa-user-circle {
+  font-size: 40px;
+  color: #fff;
+}
+
+/* Estilos para la foto de perfil en el formulario de edición */
+.current-photo {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.current-photo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Ajuste del tamaño de avatar en tabla de usuarios */
+.table .user-avatar-small {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.table .fas.fa-user-circle {
+  font-size: 30px;
+  color: #ccc;
+}
+
+/* Estilos para los botones de acción en tablas */
+.table .actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.table .btn-edit {
+  color: #0056b3;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.table .btn-edit:hover {
+  background-color: #e9ecef;
+}
+
+.table .btn-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.table .btn-toggle .fa-toggle-on {
+  color: #28a745;
+  font-size: 1.2rem;
+}
+
+.table .btn-toggle .fa-toggle-off {
+  color: #dc3545;
+  font-size: 1.2rem;
+}
+
+.table .btn-toggle:hover {
+  background-color: #e9ecef;
+}
+
+/* Estilos para el contenedor de búsqueda */
+.search-container {
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Estilos para el input de búsqueda */
+#searchInput {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* Estilos para las filas de búsqueda */
+.searchable-row {
+  transition: all 0.3s ease;
+}
+
+.searchable-row:hover {
+  background-color: #f5f5f5;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.auth-buttons a {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.auth-buttons a i {
+  font-size: 1.1rem;
+}
+
+.auth-buttons .btn-secondary {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.auth-buttons .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.card.login-card,
+.card.register-card {
+  max-width: 500px;
+  margin: 5rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  background: white;
+}
+
+.main-content {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #f5f5f5;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.logo-img {
+  width: 80px;
+  height: auto;
+  margin-right: 1rem;
+}
+
+.logo h1 {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5rem 0;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-buttons a {
+  min-width: 160px;
+}
+
+.card.card-table {
+  margin-bottom: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table-container {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.button-container {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.card.card-form {
+  margin-top: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card.card-table {
+  margin-top: 2rem;
+}
+
+/* Estilos específicos para la vista de especialidades */
+.card .form-group {
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+}
+
+.card .search-container {
+  margin: 2rem 0;
+  max-width: 400px;
+}
+
+.card .table-container {
+  margin-top: 2rem;
+}
+
+.table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
+}
+
+/* Ajustes para los botones de acción */
+.table .actions {
+  width: 100px;
+  text-align: center;
+}
+
+/* Ajuste para el estado */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.status-active .status-badge {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.status-inactive .status-badge {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.form-control.is-invalid {
+  border-color: #dc3545;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.form-control.is-valid {
+  border-color: #198754;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+/* Ajuste para formularios */
+.card.login-card,
+.card.card-form,
+.form-register,
+.card:not(.card-table) {
+  max-width: 600px;  /* Aumentado de ~400px */
+  width: 90%;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+}
+
+/* Ajuste para botones en formularios */
+.button-container,
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: flex-end;
+}
+
+/* Ajuste del contenedor principal del dashboard */
+.dashboard-container .main-content {
+  padding: 2rem;
+  margin-top: 0;
+}

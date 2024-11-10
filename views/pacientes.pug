@@ -1,0 +1,85 @@
+extends layout
+
+block content
+  div.card.card-table
+    h1.card-title Lista de Pacientes
+    div.table-container
+      if error
+        div.alert.alert-danger= error
+      if success
+        div.alert.alert-success= success
+      
+      div.actions-top
+        a.btn-primary(href="/paciente/agregar")
+          i.fas.fa-user-plus
+          span Nuevo Paciente
+      
+      table.table
+        thead
+          tr
+            th ID
+            th Foto DNI
+            th Nombre
+            th Apellido
+            th DNI
+            th Email
+            th Teléfono
+            th Dirección
+            th Localidad
+            th Estado
+            th Acciones
+        tbody
+          each paciente in pacientes
+            tr
+              td= paciente.userid
+              td
+                if paciente.foto_dni
+                  img.dni-thumbnail(src=`/uploads/dni/${paciente.foto_dni}` alt="Foto DNI")
+                else
+                  i.fas.fa-id-card
+              td= paciente.nombre
+              td= paciente.apellido
+              td= paciente.dni
+              td= paciente.mail
+              td= paciente.telefono
+              td= paciente.direccion
+              td= paciente.localidad
+              td(class=paciente.estado ? 'status-active' : 'status-inactive')
+                span.status-badge= paciente.estado ? 'Activo' : 'Inactivo'
+              td.actions
+                if user.isAdmin || user.isSecretaria
+                  a.btn-edit(href=`/pacientes/editar/${paciente.userid}` title="Editar")
+                    i.fas.fa-edit
+                  button.btn-toggle(
+                    onclick=`togglePatientStatus(${paciente.userid}, ${!paciente.estado})` 
+                    title=paciente.estado ? 'Desactivar' : 'Activar'
+                  )
+                    i.fas(class=paciente.estado ? 'fa-toggle-on' : 'fa-toggle-off')
+
+    div.button-container
+      a.btn-secondary(href="/inicio")
+        i.fas.fa-arrow-left
+        span Volver al inicio
+
+block scripts
+  script.
+    async function togglePatientStatus(userId, newStatus) {
+      try {
+        const response = await fetch(`/paciente/toggle-status/${userId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ estado: newStatus })
+        });
+        
+        if (response.ok) {
+          window.location.reload();
+        } else {
+          alert('Error al cambiar el estado del paciente');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error al cambiar el estado del paciente');
+      }
+    }

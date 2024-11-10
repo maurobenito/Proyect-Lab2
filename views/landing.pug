@@ -1,0 +1,79 @@
+extends layout
+
+block content
+  div.landing-container
+    section.hero
+      div.hero-overlay
+      div.hero-slider
+        each img in ['slider1.jpg', 'slider2.jpg', 'slider3.jpg']
+          div.slide(style=`background-image: url('/images/${img}')`)
+      
+      div.hero-content
+        h1.animate-fade-in Bienvenido al Centro Médico Integral
+        p.hero-subtitle.animate-fade-in Excelencia en el cuidado de tu salud
+        div.hero-stats.animate-fade-in
+          div.stat-item
+            i.fas.fa-user-md
+            span +50 Profesionales
+          div.stat-item
+            i.fas.fa-stethoscope
+            span 15 Especialidades
+          div.stat-item
+            i.fas.fa-users
+            span +10000 Pacientes
+        div.hero-buttons.animate-fade-in
+          a.btn-primary.btn-large(href="/login")
+            i.fas.fa-sign-in-alt
+            span Iniciar Sesión
+          a.btn-secondary.btn-large(href="/register")
+            i.fas.fa-user-plus
+            span Registrarse
+
+    section.features
+      div.section-header.animate-on-scroll
+        h2 Nuestros Servicios
+        p.subtitle Comprometidos con tu bienestar
+      
+      div.feature-grid
+        div.feature-card.animate-on-scroll
+          div.feature-icon
+            i.fas.fa-calendar-check
+          div.feature-content
+            h3 Turnos Online 24/7
+            p Gestiona tus citas médicas en cualquier momento y desde cualquier dispositivo.
+        
+        div.feature-card.animate-on-scroll
+          div.feature-icon
+            i.fas.fa-user-md
+          div.feature-content
+            h3 Staff Médico Especializado
+            p Profesionales altamente calificados y en constante actualización.
+        
+        div.feature-card.animate-on-scroll
+          div.feature-icon
+            i.fas.fa-hospital
+          div.feature-content
+            h3 Tecnología de Vanguardia
+            p Equipamiento moderno para diagnósticos precisos y tratamientos efectivos.
+
+    section.testimonials.animate-on-scroll
+      div.section-header
+        h2 Lo que dicen nuestros pacientes
+        p.subtitle Experiencias que avalan nuestro compromiso
+      
+      div.testimonials-grid
+        - 
+          var testimonios = [
+            {name: 'María García', text: 'Excelente atención y profesionalismo en todo momento.'},
+            {name: 'Juan Pérez', text: 'Facilidad para sacar turnos y médicos muy capacitados.'},
+            {name: 'Ana López', text: 'Me siento muy segura con el cuidado que recibo.'}
+          ]
+        
+        each testimonial in testimonios
+          div.testimonial-card
+            i.fas.fa-quote-left
+            p= testimonial.text
+            div.testimonial-author= testimonial.name
+
+block scripts
+  script(src='/js/landing.js')

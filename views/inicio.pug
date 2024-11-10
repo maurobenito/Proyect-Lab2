@@ -1,0 +1,120 @@
+extends layout
+
+block content
+  div.dashboard-container
+    div.sidebar
+      div.user-info
+        if user.foto_perfil
+          img.user-avatar(src=`/uploads/profile/${user.foto_perfil}` alt="Foto de perfil")
+        else
+          i.fas.fa-user-circle
+        h2 #{user.nombre} #{user.apellido}
+        p.user-type #{user.tipo_perfil}
+      
+      nav.menu
+        if user.isAdmin
+          div.menu-section
+            h3 Gestión
+            ul
+              li
+                a(href="/usuarios")
+                  i.fas.fa-users
+                  span Usuarios
+              li
+                a(href="/pacientes")
+                  i.fas.fa-hospital-user
+                  span Pacientes
+              li
+                a(href="/agenda")
+                  i.fas.fa-calendar-alt
+                  span Agenda
+              li
+                a(href="/medicos/especialidades")
+                  i.fas.fa-stethoscope
+                  span Especialidades
+            
+            h3 Agregar
+            ul
+              li
+                a(href="/paciente/agregar")
+                  i.fas.fa-user-plus
+                  span Nuevo Paciente
+              li
+                a(href="/medicos")
+                  i.fas.fa-user-md
+                  span Nuevo Profesional
+              li
+                a(href="/admin/crear")
+                  i.fas.fa-user-shield
+                  span Nuevo Administrador
+              li
+                a(href="/secretaria/crear")
+                  i.fas.fa-user-tie
+                  span Nueva Secretaria
+
+        if user.isSecretaria
+          div.menu-section
+            h3 Gestión
+            ul
+              li
+                a(href="/pacientes")
+                  i.fas.fa-hospital-user
+                  span Pacientes
+              li
+                a(href="/agenda")
+                  i.fas.fa-calendar-alt
+                  span Agenda
+            
+            h3 Agregar
+            ul
+              li
+                a(href="/paciente/agregar")
+                  i.fas.fa-user-plus
+                  span Nuevo Paciente
+
+        if user.isMedico
+          div.menu-section
+            h3 Mi Consultorio
+            ul
+              li
+                a(href="/agenda")
+                  i.fas.fa-calendar-alt
+                  span Mi Agenda
+              li
+                a(href="/mis-pacientes")
+                  i.fas.fa-users
+                  span Mis Pacientes
+        
+        if user.isPaciente
+          div.menu-section
+            h3 Mis Turnos
+            ul
+              li
+                a(href="/mis-turnos")
+                  i.fas.fa-calendar-check
+                  span Ver Turnos
+              li
+                a(href="/solicitar-turno")
+                  i.fas.fa-plus-circle
+                  span Solicitar Turno
+
+        div.menu-section.bottom
+          ul
+            li
+              a(href="/logout")
+                i.fas.fa-sign-out-alt
+                span Cerrar Sesión
+
+        div.menu-section
+          h3 Mi Cuenta
+          ul
+            li
+              a(href="/mi-perfil")
+                i.fas.fa-user-edit
+                span Mi Perfil
+
+    div.main-content
+      div.welcome-banner
+        h1 Bienvenido al Portal de Consultas Médicas
+        p Selecciona una opción del menú para comenzar
+

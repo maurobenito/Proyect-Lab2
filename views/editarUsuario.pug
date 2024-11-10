@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  div.card.card-form
+    h2.card-title Editar Usuario
+    
+    if error
+      div.alert.alert-danger
+        | #{error}
+    
+    form(action=`/usuarios/editar/${usuario.userid}`, method='POST', enctype="multipart/form-data")
+      if usuario.foto_perfil
+        div.current-photo
+          img(src=`/uploads/profile/${usuario.foto_perfil}` alt="Foto de perfil actual")
+      div.form-group
+        label.form-label(for='foto_perfil') Foto de Perfil:
+        input.form-control(type='file', name='foto_perfil', accept="image/*", placeholder="Seleccione una foto de perfil")
+      div.form-group
+        label.form-label(for="username") Nombre de usuario o Mail:
+        input.form-control(type="text", name="username", required, placeholder="Ingrese nombre de usuario o mail")
+      div.form-group
+        label.form-label(for='password') Contraseña:
+        input.form-control(type='password', name='password', placeholder="Ingrese nueva contraseña o deje vacío")
+      div.form-group
+        label.form-label(for='tipo') Tipo:
+        select.form-control(name='tipo', required)
+          option(value='admin', selected=usuario.tipo_perfil === 'admin') Administrador
+          option(value='medico', selected=usuario.tipo_perfil === 'medico') Médico
+          option(value='secretaria', selected=usuario.tipo_perfil === 'secretaria') Secretaria
+          option(value='paciente', selected=usuario.tipo_perfil === 'paciente') Paciente
+      div.button-container
+        button.btn-primary(type='submit')
+          i.fas.fa-save
+          span Guardar Cambios
+        a.btn-secondary(href='/usuarios')
+          i.fas.fa-arrow-left
+          span Volver

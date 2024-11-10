@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  div.card
+    h2.card-title Crear Administrador
+    
+    if error
+      div.alert.alert-danger
+        | #{error}
+    
+    if success
+      div.alert.alert-success
+        pre.success-message #{success}
+    
+    form(action="/admin/crear", method="POST")
+      div.form-group
+        label.form-label(for="nombre") Nombre:
+        input.form-control(type="text", name="nombre", required, placeholder="Nombre del administrador")
+      div.form-group
+        label.form-label(for="apellido") Apellido:
+        input.form-control(type="text", name="apellido", required, placeholder="Apellido del administrador")
+      div.form-group
+        label.form-label(for="dni") DNI:
+        input.form-control(type="number", name="dni", required, placeholder="DNI sin puntos")
+      div.form-group
+        label.form-label(for="email") Nombre de usuario o Mail:
+        input.form-control(type="text", name="email", required, placeholder="Ingrese nombre de usuario o mail")
+      div.form-group
+        label.form-label(for="password") Contraseña:
+        input.form-control(type="password", name="password", required, placeholder="Ingrese una contraseña segura")
+      div.form-group
+        label.form-label(for="confirm_password") Confirmar Contraseña:
+        input.form-control(type="password", name="confirm_password", required, placeholder="Confirme la contraseña")
+      div.form-group
+        label.form-label(for="telefono") Teléfono:
+        input.form-control(type="text", name="telefono", required, placeholder="Ej: 11-2345-6789")
+      div.form-group
+        label.form-label(for="direccion") Dirección:
+        input.form-control(type="text", name="direccion", required, placeholder="Dirección del administrador")
+      div.form-group
+        label.form-label(for="localidad") Localidad:
+        input.form-control(type="text", name="localidad", required, placeholder="Localidad del administrador")
+      div.button-container
+        button.btn-primary(type="submit")
+          i.fas.fa-user-plus
+          span Crear Administrador
+        a.btn-secondary(href="/inicio")
+          i.fas.fa-arrow-left
+          span Volver

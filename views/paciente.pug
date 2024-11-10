@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  div.card
+    h2.card-title Agregar Paciente
+    
+    if error
+      div.alert.alert-danger
+        | #{error}
+    
+    if success
+      div.alert.alert-success
+        pre.success-message #{success}
+    
+    form(action="/paciente/agregar", method="POST", enctype="multipart/form-data")
+      div.form-group
+        label.form-label(for="nombre") Nombre:
+        input.form-control(type="text", name="nombre", required, placeholder="Ingrese el nombre del paciente")
+      div.form-group
+        label.form-label(for="apellido") Apellido:
+        input.form-control(type="text", name="apellido", required, placeholder="Ingrese el apellido del paciente")
+      div.form-group
+        label.form-label(for="dni") DNI:
+        input.form-control(type="number", name="dni", required, placeholder="Ingrese DNI sin puntos")
+      div.form-group
+        label.form-label(for="email") Nombre de usuario o Mail:
+        input.form-control(type="text", name="email", required, placeholder="Ingrese nombre de usuario o mail")
+      div.form-group
+        label.form-label(for="telefono") Teléfono:
+        input.form-control(type="text", name="telefono", required, placeholder="266-5032890")
+      div.form-group
+        label.form-label(for="direccion") Dirección:
+        input.form-control(type="text", name="direccion", required, placeholder="Calle, número, piso, depto")
+      div.form-group
+        label.form-label(for="localidad") Localidad:
+        input.form-control(type="text", name="localidad", required, placeholder="Ingrese localidad o ciudad")
+      div.button-container
+        button.btn-primary(type="submit")
+          i.fas.fa-user-plus
+          span Agregar Paciente
+        a.btn-secondary(href="/inicio")
+          i.fas.fa-arrow-left
+          span Volver

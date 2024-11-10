@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  div.card.login-card
+    h2.card-title Iniciar Sesión
+    
+    if error
+      div.alert.alert-danger
+        | #{error}
+
+    form(action="/login", method="POST")
+      div.form-group
+        label.form-label(for="username") Usuario:
+        input.form-control(type="text", name="username", required, placeholder="Ingresa tu usuario")
+      div.form-group
+        label.form-label(for="password") Contraseña:
+        input.form-control(type="password", name="password", required, placeholder="Ingresa tu contraseña")
+      div.form-actions
+        button.btn-primary(type="submit")
+          i.fas.fa-sign-in-alt
+          span Iniciar Sesión
+        a.btn-secondary(href="/register")
+          i.fas.fa-user-plus
+          span Registrarse

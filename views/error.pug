@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  div.error-container
+    h1.error-title= message || 'Ha ocurrido un error'
+    if error && error.status
+      h2.error-status= error.status
+    if error && error.stack && process.env.NODE_ENV === 'development'
+      pre.error-stack= error.stack
+    
+    div.error-actions
+      a.btn-primary(href="/inicio")
+        i.fas.fa-home
+        span Volver al inicio

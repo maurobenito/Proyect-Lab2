@@ -1,0 +1,41 @@
+doctype html
+html(lang="es")
+  head
+    title= title
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel='stylesheet', href='/css/normalize.css')
+    link(rel='stylesheet', href='/css/main.css')
+    link(rel='stylesheet', href='/css/components.css')
+    link(rel='stylesheet', href='/css/landing.css')
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+  body
+    header.main-header
+      div.header-content
+        div.logo
+          a(href="/")
+            img.logo-img(src="/images/logo-clinica.avif" alt="Logo Clínica")
+            h1 Centro Médico Integral
+        if !user
+          div.auth-buttons
+            a(href="/login", class="btn-primary")
+              i.fas.fa-sign-in-alt
+              span Iniciar Sesión
+            a(href="/register", class="btn-secondary")
+              i.fas.fa-user-plus
+              span Registrarse
+        if user
+          div.user-header
+            div.user-info-header
+              if user.foto_perfil
+                img.user-avatar(src=`/uploads/profile/${user.foto_perfil}` alt="Foto de perfil")
+              else
+                i.fas.fa-user-circle
+              div.user-details
+                span.user-name #{user.nombre} #{user.apellido}
+                span.user-role #{user.tipo_perfil}
+    main.main-content
+      block content
+    block scripts
+    script(src='/js/formValidation.js')
+

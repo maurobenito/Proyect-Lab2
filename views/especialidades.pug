@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  div.card
+    h2.card-title Gestión de Especialidades
+    
+    if error
+      div.alert.alert-danger= error
+    if success
+      div.alert.alert-success= success
+    
+    div.content-section
+      form(action="/medicos/especialidad/agregar", method="POST")
+        div.form-group
+          label.form-label(for="nombre_esp") Nombre de la Especialidad:
+          input.form-control(type="text", name="nombre_esp", required, placeholder="Ej: Cardiología, Pediatría, etc.")
+        div.button-container
+          button.btn-primary(type="submit")
+            i.fas.fa-plus
+            span Agregar Especialidad
+          a.btn-secondary(href="/inicio")
+            i.fas.fa-arrow-left
+            span Volver
+
+    if especialidades && especialidades.length > 0
+      div.table-container
+        div.search-container
+          input#searchInput.form-control(type="text", placeholder="Buscar especialidad...")
+        
+        table.table
+          thead
+            tr
+              th(width="10%") #
+              th(width="50%") Nombre
+              th(width="20%") Estado
+              th(width="20%") Acciones
+          tbody
+            each especialidad, index in especialidades
+              tr.searchable-row
+                td= index + 1
+                td= especialidad.nombre_esp
+                td(class=especialidad.estado ? 'status-active' : 'status-inactive')
+                  span.status-badge= especialidad.estado ? 'Activo' : 'Inactivo'
+                td.actions
+                  button.btn-toggle(
+                    onclick=`desactivarEspecialidad(${especialidad.especialidadId})` 
+                    title=especialidad.estado ? 'Desactivar' : 'Activar'
+                  )
+                    i.fas(class=especialidad.estado ? 'fa-toggle-on' : 'fa-toggle-off')
+
+block append scripts
+  script(src="/js/especialidades.js")

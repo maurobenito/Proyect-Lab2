@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  div.card
+    h2.card-title Editar Paciente
+    
+    if error
+      div.alert.alert-danger
+        | #{error}
+    
+    if success
+      div.alert.alert-success
+        pre.success-message #{success}
+    
+    form(action=`/paciente/editar/${paciente.userid}`, method="POST")
+      div.form-group
+        label.form-label(for="nombre") Nombre:
+        input.form-control(type="text", name="nombre", required, value=paciente.nombre)
+      div.form-group
+        label.form-label(for="apellido") Apellido:
+        input.form-control(type="text", name="apellido", required, value=paciente.apellido)
+      div.form-group
+        label.form-label(for="dni") DNI:
+        input.form-control(type="number", name="dni", required, value=paciente.dni)
+      div.form-group
+        label.form-label(for="email") Email:
+        input.form-control(type="text", name="email", required, value=paciente.mail)
+      div.form-group
+        label.form-label(for="telefono") Teléfono:
+        input.form-control(type="text", name="telefono", required, value=paciente.telefono)
+      div.form-group
+        label.form-label(for="direccion") Dirección:
+        input.form-control(type="text", name="direccion", required, value=paciente.direccion)
+      div.form-group
+        label.form-label(for="localidad") Localidad:
+        input.form-control(type="text", name="localidad", required, value=paciente.localidad)
+      div.button-container
+        button.btn-primary(type="submit")
+          i.fas.fa-save
+          span Guardar Cambios
+        a.btn-secondary(href="/paciente")
+          i.fas.fa-arrow-left
+          span Volver

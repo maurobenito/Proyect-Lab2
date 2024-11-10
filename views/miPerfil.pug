@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  div.card.card-form
+    h2.card-title Mi Perfil
+    
+    if error
+      div.alert.alert-danger
+        | #{error}
+    
+    if success
+      div.alert.alert-success
+        | #{success}
+    
+    form(action="/mi-perfil", method="POST", enctype="multipart/form-data")
+      if user.foto_perfil
+        div.current-photo
+          img(src=`/uploads/profile/${user.foto_perfil}` alt="Foto de perfil actual")
+      div.form-group
+        label.form-label(for='foto_perfil') Foto de Perfil:
+        input.form-control(type='file', name='foto_perfil', accept="image/*")
+      div.form-group
+        label.form-label(for='password') Nueva Contraseña:
+        input.form-control(type='password', name='password', placeholder="Dejar vacío para mantener la actual")
+      div.form-group
+        label.form-label(for='confirm_password') Confirmar Contraseña:
+        input.form-control(type='password', name='confirm_password', placeholder="Confirmar nueva contraseña")
+      div.button-container
+        button.btn-primary(type='submit')
+          i.fas.fa-save
+          span Guardar Cambios
+        a.btn-secondary(href='/inicio')
+          i.fas.fa-arrow-left
+          span Volver

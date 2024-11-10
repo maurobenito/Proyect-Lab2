@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  div.card.card-table
+    h1.card-title Lista de Usuarios
+    div.table-container
+      if error
+        div.alert.alert-danger= error
+      if success
+        div.alert.alert-success= success
+      
+      div.search-container
+        input#searchInput.form-control(type="text", placeholder="Buscar usuario...")
+      
+      table.table
+        thead
+          tr
+            th #
+            th Foto
+            th Nombre
+            th Apellido
+            th Username
+            th Tipo
+            th Estado
+            th Acciones
+        tbody#tableBody
+          each usuario, index in usuarios
+            tr.searchable-row
+              td= index + 1
+              td
+                if usuario.foto_perfil
+                  img.user-avatar-small(src=`/uploads/profile/${usuario.foto_perfil}` alt="Foto de perfil")
+                else
+                  i.fas.fa-user-circle
+              td= usuario.nombre
+              td= usuario.apellido
+              td= usuario.nombre_user
+              td= usuario.tipo_perfil
+              td(class=usuario.estado ? 'status-active' : 'status-inactive')
+                span.status-badge= usuario.estado ? 'Activo' : 'Inactivo'
+              td.actions
+                if user.isAdmin
+                  a.btn-edit(href=`/usuarios/editar/${usuario.userid}` title="Editar")
+                    i.fas.fa-edit
+                  button.btn-toggle(onclick=`toggleUserStatus(${usuario.userid}, ${!usuario.estado})` title=usuario.estado ? 'Desactivar' : 'Activar')
+                    i.fas(class=usuario.estado ? 'fa-toggle-on' : 'fa-toggle-off')
+      
+      div.button-container
+        a.btn-secondary(href="/inicio")
+          i.fas.fa-arrow-left
+          span Volver al inicio
+
+block append scripts
+  script(src="/js/usuarios.js")
